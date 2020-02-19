@@ -62,7 +62,7 @@ static TaskHandle_t GUI_Task_Handle = NULL;
  * 来完成的
  * 
  */
-SemaphoreHandle_t ScreenShotSem_Handle = NULL;
+
  
 /******************************* 全局变量声明 ************************************/
 /*
@@ -171,10 +171,9 @@ static void LED_Task(void* parameter)
 {
 	while(1)
 	{
-    printf("%d\r\n", (int)GUI_ALLOC_GetNumUsedBytes());
+//    printf("%d\r\n", (int)GUI_ALLOC_GetNumUsedBytes());
 		LED3_TOGGLE;
-		vTaskDelay(100);
-		
+		vTaskDelay(1000);
 	}
 }
 
@@ -209,7 +208,6 @@ static void GUI_Task(void* parameter)
 	while(1)
 	{
     MainTask();
-//    GUI_Delay(5000);
 	}
 }
 
@@ -226,9 +224,8 @@ static void BSP_Init(void)
   SCB_EnableDCache();
   Board_MPU_Config(0, MPU_Normal_WT, 0x20000000, MPU_REGION_SIZE_128KB);
   Board_MPU_Config(1, MPU_Normal_WT, 0x24000000, MPU_REGION_SIZE_512KB);
-  Board_MPU_Config(2, MPU_Normal_NonCache, 0xD0000000, MPU_REGION_SIZE_32MB);
-  /*emwin动态内存配置为WT，在使用Alpha混合和内存设备时需要手动清空D-Cache，但RGB565下清空操作无效*/
-  Board_MPU_Config(3,MPU_Normal_WT,0xD1800000,MPU_REGION_SIZE_8MB);
+  /* 如果配置为WT，则在使用Alpha混合时需要手动清空D-Cache，但RGB565下清空操作无效 */
+  Board_MPU_Config(2, MPU_Normal_WT, 0xD0000000, MPU_REGION_SIZE_64MB);
   
 	/* CRC和emWin没有关系，只是他们为了库的保护而做的
    * 这样STemWin的库只能用在ST的芯片上面，别的芯片是无法使用的。

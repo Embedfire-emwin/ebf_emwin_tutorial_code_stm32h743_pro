@@ -58,13 +58,13 @@ Purpose     : Display controller initialization
 // Define the available number of bytes available for the GUI
 //
 #if USE_EXTMEMHEAP
-  #define GUI_NUMBYTES   (1024 * 1024 * 8)    // x Byte
-  #define GUI_EXTBUFADD  (0xD2000000-GUI_NUMBYTES)//32MB SDRAM的其中8MB作为STemWIN动态内存
+  #define GUI_NUMBYTES   (1024 * 1024 * 16)    // x Byte
+  #define GUI_EXTBUFADD  (0xD4000000-GUI_NUMBYTES)//64MB SDRAM的其中16MB作为STemWIN动态内存
 #else
   #define GUI_NUMBYTES  (1024 * 110)    // x KByte
 #endif
 
-#define GUI_BLOCKSIZE 0x80
+
 
 /*********************************************************************
 *
@@ -111,10 +111,8 @@ void GUI_X_Config(void)
 {
 #ifdef USE_EXTMEMHEAP
   GUI_ALLOC_AssignMemory(HeapMem, GUI_NUMBYTES);
-	GUI_ALLOC_SetAvBlockSize(GUI_BLOCKSIZE);
 #else	
-  GUI_ALLOC_AssignMemory(extMem, GUI_NUMBYTES);	
-	GUI_ALLOC_SetAvBlockSize(GUI_BLOCKSIZE);
+  GUI_ALLOC_AssignMemory(extMem, GUI_NUMBYTES);
 #endif
 }
 

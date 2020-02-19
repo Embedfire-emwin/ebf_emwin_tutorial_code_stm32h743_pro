@@ -191,8 +191,8 @@ static void ShowGIF(const char *sFilename)
 			GUI_GIF_DrawSub(_acbuffer, file.fsize,
 											(LCD_GetXSize() - Gifinfo.xSize) / 2,
 											(LCD_GetYSize() - Gifinfo.ySize) / 2, i);
-       /* 帧延时 */
-			GUI_Delay(Imageinfo.Delay);
+      /* 帧延时 */
+			GUI_Delay(Imageinfo.Delay * 10);
 		}
 	}
 	/* 释放内存 */

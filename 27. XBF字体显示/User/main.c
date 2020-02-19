@@ -63,7 +63,7 @@ static TaskHandle_t GUI_Task_Handle = NULL;
  * 来完成的
  * 
  */
-SemaphoreHandle_t ScreenShotSem_Handle = NULL;
+
  
 /******************************* 全局变量声明 ************************************/
 /*
@@ -172,10 +172,9 @@ static void LED_Task(void* parameter)
 {
 	while(1)
 	{
-    printf("%d\r\n", (int)GUI_ALLOC_GetNumUsedBytes());
+//    printf("%d\r\n", (int)GUI_ALLOC_GetNumUsedBytes());
 		LED3_TOGGLE;
 		vTaskDelay(1000);
-		
 	}
 }
 

@@ -58,8 +58,8 @@ uint8_t *SIFbuffer18;
 #elif (SIF_FONT_SOURCE == USE_SDCARD_FONT)
 
 	static const char FONT_STORAGE_ROOT_DIR[]  =   "0:";
-	static const char FONT_XINSONGTI_18_ADDR[] = 	 "0:/Font/新宋体18_4bpp.sif";
-	static const char FONT_SIYUANHEITI_36_ADDR[] = 	 "0:/Font/思源黑体36_4bpp.sif";
+	static const char FONT_XINSONGTI_18_ADDR[] = 	 "0:/Font/xinsongti18_4bpp.sif";
+	static const char FONT_SIYUANHEITI_36_ADDR[] = 	 "0:/Font/siyuanheiti36_4bpp.sif";
 
 #endif
 
